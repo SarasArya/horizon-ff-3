@@ -1,13 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -18,12 +9,12 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 4,
+            "image_gap": 8,
             "large_first_image": false,
             "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
+            "thumbnail_position": "bottom",
             "thumbnail_width": 44,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
@@ -78,9 +69,93 @@
                 "padding-block-end": 0
               },
               "blocks": {
+                "badges_row_1": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 8,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "badge_new_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>NEW</p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "nowrap",
+                        "color": "#141414",
+                        "background": true,
+                        "background_color": "#FFFFFF",
+                        "corner_radius": 4,
+                        "padding-block-start": 2,
+                        "padding-block-end": 2,
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 8
+                      },
+                      "blocks": {}
+                    },
+                    "badge_discount_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>40% OFF FIRST ORDER</p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "nowrap",
+                        "color": "#FFFFFF",
+                        "background": true,
+                        "background_color": "#EC0606",
+                        "corner_radius": 4,
+                        "padding-block-start": 2,
+                        "padding-block-end": 2,
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 8
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "badge_new_1",
+                    "badge_discount_1"
+                  ]
+                },
                 "header_title_1": {
                   "type": "text",
-                  "name": "t:names.title",
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
                     "width": "100%",
@@ -106,7 +181,6 @@
                 },
                 "header_rating_price_1": {
                   "type": "group",
-                  "name": "Rating & Price",
                   "settings": {
                     "content_direction": "row",
                     "vertical_on_mobile": false,
@@ -171,11 +245,176 @@
                     "header_review_1",
                     "header_price_1"
                   ]
+                },
+                "tags_row_1": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 8,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "tag_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Fresh & Citrusy</p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "nowrap",
+                        "color": "#2A523F",
+                        "background": true,
+                        "background_color": "#F5FAF6",
+                        "corner_radius": 4,
+                        "padding-block-start": 2,
+                        "padding-block-end": 2,
+                        "padding-inline-start": 6,
+                        "padding-inline-end": 6
+                      },
+                      "blocks": {}
+                    },
+                    "tag_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Flavorful Nutrition</p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "nowrap",
+                        "color": "#2A523F",
+                        "background": true,
+                        "background_color": "#F5FAF6",
+                        "corner_radius": 4,
+                        "padding-block-start": 2,
+                        "padding-block-end": 2,
+                        "padding-inline-start": 6,
+                        "padding-inline-end": 6
+                      },
+                      "blocks": {}
+                    },
+                    "tag_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Energy + Immunity</p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "paragraph",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "0.875rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "nowrap",
+                        "color": "#2A523F",
+                        "background": true,
+                        "background_color": "#F5FAF6",
+                        "corner_radius": 4,
+                        "padding-block-start": 2,
+                        "padding-block-end": 2,
+                        "padding-inline-start": 6,
+                        "padding-inline-end": 6
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "tag_1",
+                    "tag_2",
+                    "tag_3"
+                  ]
+                },
+                "description_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>• Packed with 40 essential vitamins, minerals, and superfoods.<br>• Dietitian-approved formula.<br>• Provides a full serving of vegetables.<br>• Boosts gut, immune, and energy health.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "1.5",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "supplement_facts_1": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><u>Supplement Facts</u></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "1.5",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
+                "badges_row_1",
                 "header_title_1",
-                "header_rating_price_1"
+                "header_rating_price_1",
+                "tags_row_1",
+                "description_1",
+                "supplement_facts_1"
               ]
             },
             "variant_picker_1": {
@@ -194,6 +433,9 @@
             "selling_plan_1": {
               "type": "selling-plan-picker",
               "settings": {
+                "heading": "Select Frequency:",
+                "badge_text": "MOST POPULAR",
+                "show_badge": true,
                 "subscription_label": "Subscribe & Save",
                 "onetime_label": "One-time Purchase",
                 "default_selected": "subscription",
@@ -241,7 +483,6 @@
             },
             "usp_group_1": {
               "type": "group",
-              "name": "USP Row",
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -475,7 +716,6 @@
               "blocks": {
                 "recs_heading_1": {
                   "type": "text",
-                  "name": "t:names.header",
                   "settings": {
                     "text": "<h3>You may also like</h3>",
                     "width": "fit-content",
@@ -521,7 +761,7 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
-        "gap": 48,
+        "gap": 64,
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0

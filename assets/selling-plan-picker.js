@@ -15,6 +15,7 @@ class SellingPlanPicker extends Component {
     super.connectedCallback();
     this.#initSellingPlan();
     this.addEventListener('change', this.#handleChange.bind(this));
+    this.addEventListener('click', this.#handleDeliveryClick.bind(this));
   }
 
   /**
@@ -25,7 +26,6 @@ class SellingPlanPicker extends Component {
     const hiddenInput = this.#getSellingPlanInput();
     if (!hiddenInput) return;
 
-    // Find the initially checked radio
     const checkedRadio = this.querySelector('input[name="selling-plan-option"]:checked');
 
     if (checkedRadio) {
@@ -56,11 +56,51 @@ class SellingPlanPicker extends Component {
     this.#updateSelectedState(target);
 
     this.dispatchEvent(new CustomEvent('selling-plan:change', {
-      detail: {
-        sellingPlanId: planId || null
-      },
+      detail: { sellingPlanId: planId || null },
       bubbles: true
     }));
+  }
+
+  /**
+   * Handle clicks on delivery frequency option buttons
+   * @param {Event} event
+   */
+  #handleDeliveryClick(event) {
+    const button = event.target.closest('.selling-plan-picker__delivery-option');
+    if (!button) return;
+
+    const planId = button.dataset.planId;
+    if (!planId) return;
+
+    const siblings = button.parentElement.querySelectorAll('.selling-plan-picker__delivery-option');
+
+    for (const sib of siblings) {
+      sib.classList.remove('selling-plan-picker__delivery-option--selected');
+    }
+
+    button.classList.add('selling-plan-picker__delivery-option--selected');
+
+    const parentOption = button.closest('.selling-plan-picker__option');
+    const radioInput = parentOption?.querySelector('input[type="radio"]');
+
+    if (radioInput) {
+      radioInput.value = planId;
+      radioInput.checked = true;
+      this.#currentSellingPlanId = planId;
+
+      const hiddenInput = this.#getSellingPlanInput();
+
+      if (hiddenInput) {
+        hiddenInput.value = planId;
+      }
+
+      this.#updateSelectedState(radioInput);
+
+      this.dispatchEvent(new CustomEvent('selling-plan:change', {
+        detail: { sellingPlanId: planId },
+        bubbles: true
+      }));
+    }
   }
 
   /**
@@ -86,7 +126,6 @@ class SellingPlanPicker extends Component {
    * @returns {HTMLInputElement|null}
    */
   #getSellingPlanInput() {
-    // Look for the hidden input with name="selling_plan" in the closest form
     const productForm = this.closest('product-form-component')
       || document.querySelector('product-form-component');
 
@@ -95,7 +134,6 @@ class SellingPlanPicker extends Component {
       if (input) return input;
     }
 
-    // Fallback: search in any product form on the page
     const form = document.querySelector('form[data-type="add-to-cart-form"]');
     if (form) {
       return form.querySelector('input[name="selling_plan"]');
