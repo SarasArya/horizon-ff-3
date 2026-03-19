@@ -1,0 +1,333 @@
+{% doc %}
+  Selling Plan Picker Block
+
+  Renders a subscription / one-time purchase selector for products
+  that have selling plan groups attached.
+
+  @example
+  {% content_for 'block', type: 'selling-plan-picker', id: 'selling-plan-picker' %}
+{% enddoc %}
+
+{% liquid
+  assign product_resource = closest.product
+  assign current_variant = product_resource.selected_or_first_available_variant
+  assign selling_plan_groups = product_resource.selling_plan_groups
+
+  assign subscription_label = block.settings.subscription_label
+  if subscription_label == blank
+    assign subscription_label = 'sections.selling_plan_picker.subscription' | t
+  endif
+
+  assign onetime_label = block.settings.onetime_label
+  if onetime_label == blank
+    assign onetime_label = 'sections.selling_plan_picker.one_time' | t
+  endif
+
+  assign default_selected = block.settings.default_selected
+%}
+
+{% if selling_plan_groups.size > 0 %}
+  <selling-plan-picker
+    class="selling-plan-picker spacing-style"
+    style="{% render 'spacing-style', settings: block.settings %}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="selling-plan-picker__options">
+      {%- comment -%} Subscription option {%- endcomment -%}
+      {% for group in selling_plan_groups %}
+        {% assign first_plan = group.selling_plans | first %}
+        {% assign plan_price = first_plan.price_adjustments[0].value %}
+
+        <label class="selling-plan-picker__option{% if default_selected == 'subscription' %} selling-plan-picker__option--selected{% endif %}">
+          <input
+            type="radio"
+            name="selling-plan-option"
+            value="{{ first_plan.id }}"
+            class="selling-plan-picker__option-input"
+            {% if default_selected == 'subscription' %}checked{% endif %}
+          >
+          <div class="selling-plan-picker__badge-bar">
+            {{ 'sections.selling_plan_picker.most_popular' | t }}
+          </div>
+          <div class="selling-plan-picker__option-content">
+            <div class="selling-plan-picker__option-left">
+              <div class="selling-plan-picker__option-label">
+                <span class="selling-plan-picker__radio-circle" aria-hidden="true"></span>
+                {{ subscription_label }}
+              </div>
+              {% if group.selling_plans.size > 1 %}
+                <div class="selling-plan-picker__delivery-frequency">
+                  <div class="selling-plan-picker__delivery-label">
+                    {{ 'sections.selling_plan_picker.delivered_every' | t }}
+                  </div>
+                  <div class="selling-plan-picker__delivery-options">
+                    {% for plan in group.selling_plans %}
+                      <button
+                        type="button"
+                        class="selling-plan-picker__delivery-option{% if forloop.first %} selling-plan-picker__delivery-option--selected{% endif %}"
+                        data-plan-id="{{ plan.id }}"
+                      >
+                        {{ plan.name | remove: group.name | strip }}
+                      </button>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <div class="selling-plan-picker__option-price">
+              {% if current_variant.compare_at_price > current_variant.price %}
+                <span class="selling-plan-picker__compare-price">
+                  {{ current_variant.compare_at_price | money }}
+                </span>
+              {% endif %}
+              <span class="selling-plan-picker__sale-price">
+                {{ current_variant.price | money }}
+              </span>
+              {% if plan_price > 0 %}
+                <span class="selling-plan-picker__save-badge">
+                  {{ 'sections.selling_plan_picker.save' | t }} {{ plan_price }}%
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </label>
+      {% endfor %}
+
+      {%- comment -%} One-time purchase option {%- endcomment -%}
+      <label class="selling-plan-picker__option selling-plan-picker__option--onetime{% if default_selected == 'onetime' %} selling-plan-picker__option--selected{% endif %}">
+        <input
+          type="radio"
+          name="selling-plan-option"
+          value=""
+          class="selling-plan-picker__option-input"
+          {% if default_selected == 'onetime' %}checked{% endif %}
+        >
+        <div class="selling-plan-picker__option-content">
+          <div class="selling-plan-picker__option-left">
+            <div class="selling-plan-picker__option-label">
+              <span class="selling-plan-picker__radio-circle" aria-hidden="true"></span>
+              {{ onetime_label }}
+            </div>
+          </div>
+          <div class="selling-plan-picker__option-price">
+            <span class="selling-plan-picker__onetime-price">
+              {{ current_variant.price | money }}
+            </span>
+          </div>
+        </div>
+      </label>
+    </div>
+  </selling-plan-picker>
+{% endif %}
+
+{% javascript %}
+  import { Component } from '@theme/component';
+
+  class SellingPlanPicker extends Component {
+    #currentSellingPlanId = null;
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.#initSellingPlan();
+      this.addEventListener('change', this.#handleChange.bind(this));
+      this.addEventListener('click', this.#handleDeliveryClick.bind(this));
+    }
+
+    #initSellingPlan() {
+      const hiddenInput = this.#getSellingPlanInput();
+      if (!hiddenInput) return;
+
+      const checkedRadio = this.querySelector('input[name="selling-plan-option"]:checked');
+
+      if (checkedRadio) {
+        const planId = checkedRadio.value;
+        this.#currentSellingPlanId = planId || null;
+        hiddenInput.value = planId || '';
+        this.#updateSelectedState(checkedRadio);
+      }
+    }
+
+    #handleChange(event) {
+      const target = event.target;
+      if (!target || target.name !== 'selling-plan-option') return;
+
+      const planId = target.value;
+      this.#currentSellingPlanId = planId || null;
+
+      const hiddenInput = this.#getSellingPlanInput();
+
+      if (hiddenInput) {
+        hiddenInput.value = planId || '';
+      }
+
+      this.#updateSelectedState(target);
+
+      this.dispatchEvent(new CustomEvent('selling-plan:change', {
+        detail: { sellingPlanId: planId || null },
+        bubbles: true
+      }));
+    }
+
+    #handleDeliveryClick(event) {
+      const button = event.target.closest('.selling-plan-picker__delivery-option');
+      if (!button) return;
+
+      const planId = button.dataset.planId;
+      if (!planId) return;
+
+      const siblings = button.parentElement.querySelectorAll('.selling-plan-picker__delivery-option');
+
+      for (const sib of siblings) {
+        sib.classList.remove('selling-plan-picker__delivery-option--selected');
+      }
+
+      button.classList.add('selling-plan-picker__delivery-option--selected');
+
+      const parentOption = button.closest('.selling-plan-picker__option');
+      const radioInput = parentOption?.querySelector('input[type="radio"]');
+
+      if (radioInput) {
+        radioInput.value = planId;
+        radioInput.checked = true;
+        this.#currentSellingPlanId = planId;
+
+        const hiddenInput = this.#getSellingPlanInput();
+
+        if (hiddenInput) {
+          hiddenInput.value = planId;
+        }
+
+        this.#updateSelectedState(radioInput);
+
+        this.dispatchEvent(new CustomEvent('selling-plan:change', {
+          detail: { sellingPlanId: planId },
+          bubbles: true
+        }));
+      }
+    }
+
+    #updateSelectedState(selectedInput) {
+      const options = this.querySelectorAll('.selling-plan-picker__option');
+
+      for (const option of options) {
+        option.classList.remove('selling-plan-picker__option--selected');
+      }
+
+      const parentOption = selectedInput.closest('.selling-plan-picker__option');
+
+      if (parentOption) {
+        parentOption.classList.add('selling-plan-picker__option--selected');
+      }
+    }
+
+    #getSellingPlanInput() {
+      const productForm = this.closest('product-form-component')
+        || document.querySelector('product-form-component');
+
+      if (productForm) {
+        const input = productForm.querySelector('input[name="selling_plan"]');
+        if (input) return input;
+      }
+
+      const form = document.querySelector('form[data-type="add-to-cart-form"]');
+      if (form) {
+        return form.querySelector('input[name="selling_plan"]');
+      }
+
+      return null;
+    }
+
+    getSelectedSellingPlanId() {
+      return this.#currentSellingPlanId;
+    }
+  }
+
+  customElements.define('selling-plan-picker', SellingPlanPicker);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:names.selling_plan_picker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subscription_label",
+      "label": "t:settings.subscription_label",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "text",
+      "id": "onetime_label",
+      "label": "t:settings.onetime_label",
+      "default": "One-time Purchase"
+    },
+    {
+      "type": "select",
+      "id": "default_selected",
+      "label": "t:settings.default_selected",
+      "options": [
+        {
+          "value": "subscription",
+          "label": "Subscribe"
+        },
+        {
+          "value": "onetime",
+          "label": "One-time"
+        }
+      ],
+      "default": "subscription"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.selling_plan_picker",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

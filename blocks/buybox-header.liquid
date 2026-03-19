@@ -1,0 +1,121 @@
+{% doc %}
+  Buybox Header Block
+
+  Renders a colored header area for the PDP buy box.
+  Background color is driven by variant metafield (custom.buybox_color),
+  falling back to block settings.
+
+  @example
+  {% content_for 'block', type: 'buybox-header', id: 'buybox-header' %}
+{% enddoc %}
+
+{% liquid
+  assign product_resource = closest.product
+  assign current_variant = product_resource.selected_or_first_available_variant
+
+  assign bg_color = block.settings.default_bg_color
+  assign text_color = block.settings.default_text_color
+
+  if current_variant.metafields.custom.buybox_color != blank
+    assign bg_color = current_variant.metafields.custom.buybox_color
+  endif
+
+  if current_variant.metafields.custom.buybox_text_color != blank
+    assign text_color = current_variant.metafields.custom.buybox_text_color
+  endif
+%}
+
+<div
+  class="buybox-header"
+  style="--buybox-header-bg: {{ bg_color }}; --buybox-header-color: {{ text_color }}; --buybox-header-border-radius: {{ block.settings.border_radius }}px; --buybox-header-gap: {{ block.settings.gap }}px;"
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.buybox_header",
+  "tag": null,
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" },
+    { "type": "text" },
+    { "type": "icon" },
+    { "type": "image" },
+    { "type": "group" },
+    { "type": "spacer" },
+    { "type": "price" },
+    { "type": "review" },
+    { "type": "_divider" }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "default_bg_color",
+      "label": "t:settings.default_bg_color",
+      "default": "#2A523F"
+    },
+    {
+      "type": "color",
+      "id": "default_text_color",
+      "label": "t:settings.default_text_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.buybox_header",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

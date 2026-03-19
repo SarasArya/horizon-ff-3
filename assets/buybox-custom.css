@@ -1,0 +1,600 @@
+/* ==========================================================================
+   Buybox Custom Styles
+   Custom PDP buy box matching Figma design
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Buybox Header (colored header area)
+   -------------------------------------------------------------------------- */
+.buybox-header {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--buybox-header-border-radius, 12px);
+  padding: 32px;
+  gap: var(--buybox-header-gap, 16px);
+  background-color: var(--buybox-header-bg, #2A523F);
+  color: var(--buybox-header-color, #FFFFFF);
+}
+
+.buybox-header h1 {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0;
+  margin: 0;
+  color: inherit;
+}
+
+@media screen and (max-width: 749px) {
+  .buybox-header {
+    padding: 24px;
+  }
+
+  .buybox-header h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Buybox Badges
+   -------------------------------------------------------------------------- */
+.buybox-header__badges {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buybox-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.buybox-badge--new {
+  background-color: #FFFFFF;
+  color: #141414;
+}
+
+.buybox-badge--discount {
+  background-color: #EC0606;
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   3. Rating + Price Row
+   -------------------------------------------------------------------------- */
+.buybox-header .buybox-rating-price-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.buybox-header .buybox-rating-price-row .price {
+  color: inherit;
+}
+
+.buybox-header .price,
+.buybox-header .price .compare-at-price,
+.buybox-header .price .sale-price {
+  color: inherit;
+}
+
+.buybox-header .review-stars {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   4. Tags
+   -------------------------------------------------------------------------- */
+.buybox-header__tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.buybox-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: #F5FAF6;
+  color: #2A523F;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 749px) {
+  .buybox-tag {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Description
+   -------------------------------------------------------------------------- */
+.buybox-header__description {
+  color: inherit;
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.buybox-header__description ul {
+  margin: 0;
+  padding-inline-start: 0;
+  list-style: disc inside;
+}
+
+.buybox-header__description a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 749px) {
+  .buybox-header__description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Variant Picker Card-Style Overrides
+   -------------------------------------------------------------------------- */
+.product-information .variant-option--buttons:has(.variant-option__button-label__image) {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-information .variant-option--buttons:has(.variant-option__button-label__image) legend {
+  margin-block-end: 8px;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-height: 80px;
+  padding: 0;
+  border: 1px solid #D0D0BC;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) input:checked ~ .variant-option__button-label__image,
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image):has(input:checked) {
+  border-color: #141414;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image):has(input:checked) .variant-option__button-label__meta-name {
+  font-weight: 600;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label__image {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  padding: 8px 12px;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label__meta-name {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+  text-align: start;
+}
+
+.product-information .variant-option--buttons .variant-option__button-label__price-per-day {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4A4A41;
+  text-align: start;
+}
+
+/* Hide the pill element when image is present */
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) .variant-option__button-label__pill {
+  display: none;
+}
+
+/* Hide the default text element when meta is present */
+.product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__meta) .variant-option__button-label__text {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) {
+    min-height: 56px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Selling Plan Picker
+   -------------------------------------------------------------------------- */
+.selling-plan-picker {
+  width: 100%;
+}
+
+.selling-plan-picker__heading {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+  margin-block-end: 8px;
+}
+
+.selling-plan-picker__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.selling-plan-picker__option {
+  position: relative;
+  border: 1px solid #D0D0BC;
+  cursor: pointer;
+  background: #FFFFFF;
+}
+
+.selling-plan-picker__option:first-child {
+  border-radius: 0;
+}
+
+.selling-plan-picker__option + .selling-plan-picker__option {
+  margin-block-start: -1px;
+}
+
+.selling-plan-picker__option--selected {
+  border-color: #141414;
+  z-index: 1;
+}
+
+.selling-plan-picker__option-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.selling-plan-picker__badge-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E1F0E2;
+  padding: 4px 0;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #141414;
+}
+
+@media screen and (max-width: 749px) {
+  .selling-plan-picker__badge-bar {
+    padding: 4px 0;
+  }
+}
+
+.selling-plan-picker__option-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+}
+
+.selling-plan-picker__option-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.selling-plan-picker__option-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.selling-plan-picker__radio-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid #D0D0BC;
+  background: #FFFFFF;
+  transition: border-color 0.15s ease;
+}
+
+.selling-plan-picker__option--selected .selling-plan-picker__radio-circle {
+  border-color: #141414;
+}
+
+.selling-plan-picker__radio-circle::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.selling-plan-picker__option--selected .selling-plan-picker__radio-circle::after {
+  background: #141414;
+}
+
+.selling-plan-picker__option-details {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.selling-plan-picker__option-details ul {
+  margin: 8px 0 0;
+  padding-inline-start: 20px;
+}
+
+.selling-plan-picker__option-details li {
+  margin-block-end: 2px;
+}
+
+.selling-plan-picker__delivery-frequency {
+  margin-block-start: 12px;
+}
+
+.selling-plan-picker__delivery-label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  margin-block-end: 8px;
+}
+
+.selling-plan-picker__delivery-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selling-plan-picker__delivery-option {
+  padding: 6px 12px;
+  border: 1px solid #D0D0BC;
+  border-radius: 4px;
+  font-family: var(--font-body--family, sans-serif);
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  background: #FFFFFF;
+  color: #141414;
+}
+
+.selling-plan-picker__delivery-option--selected {
+  border-color: #141414;
+  font-weight: 600;
+}
+
+.selling-plan-picker__option-price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.selling-plan-picker__sale-price {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.selling-plan-picker__compare-price {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: #80806F;
+  text-decoration: line-through;
+}
+
+.selling-plan-picker__save-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: #EC0606;
+  color: #FFFFFF;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* One-time purchase row (compact) */
+.selling-plan-picker__option--onetime .selling-plan-picker__option-content {
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.selling-plan-picker__onetime-price {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+/* --------------------------------------------------------------------------
+   8. CTA Button Override (pill-shaped)
+   -------------------------------------------------------------------------- */
+.product-information .add-to-cart-button.button {
+  border-radius: 24px;
+  background-color: #141414;
+  color: #FFFFFF;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  border: 1px solid #FFFFFF;
+  height: 48px;
+}
+
+.product-information .add-to-cart-button.button:hover {
+  background-color: #2a2a2a;
+}
+
+@media screen and (max-width: 749px) {
+  .product-information .add-to-cart-button.button {
+    height: 40px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. USP Row
+   -------------------------------------------------------------------------- */
+.buybox-usp-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.buybox-usp-item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.buybox-usp-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.buybox-usp-item__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.buybox-usp-item__text {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #141414;
+  text-align: center;
+}
+
+@media screen and (max-width: 749px) {
+  .buybox-usp-row {
+    gap: 12px;
+  }
+
+  .buybox-usp-item {
+    gap: 6px;
+  }
+
+  .buybox-usp-item__icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .buybox-usp-item__text {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Accordion Override for Product Details
+   -------------------------------------------------------------------------- */
+.product-information .accordion .details__header {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   11. "You may also like" Heading
+   -------------------------------------------------------------------------- */
+.product-information .product-recommendations .section-resource-list__content h4,
+.product-information .product-recommendations .section-resource-list__content h3 {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@media screen and (max-width: 749px) {
+  .product-information .product-recommendations .section-resource-list__content h4,
+  .product-information .product-recommendations .section-resource-list__content h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

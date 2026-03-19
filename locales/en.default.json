@@ -340,6 +340,23 @@
     "blog_post_date": "Date",
     "blog_post_description": "An excerpt of your blog post's content"
   },
+  "sections": {
+    "selling_plan_picker": {
+      "subscription": "Subscribe & Save",
+      "one_time": "One-time Purchase",
+      "most_popular": "MOST POPULAR",
+      "select_frequency": "Select Frequency:",
+      "delivered_every": "Delivered every:",
+      "save": "SAVE"
+    },
+    "buybox": {
+      "money_back_guarantee": "30-day money-back guarantee",
+      "cancel_anytime": "Delay or cancel anytime",
+      "supplement_facts": "Supplement Facts",
+      "add_to_cart": "ADD TO CART",
+      "select_frequency": "Select Frequency:"
+    }
+  },
   "products": {
     "product": {
       "add_to_cart": "Add to cart",

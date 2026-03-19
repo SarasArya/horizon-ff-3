@@ -129,6 +129,26 @@
                     mode: 'unscaled'
                   %}
                 {% else %}
+                  {% liquid
+                    assign variant_featured_media = product_option_value.variant.featured_media
+                    if variant_featured_media == blank and product_option_value.product_url
+                      assign variant_featured_media = product_option_value.variant.product.featured_media
+                    endif
+                    assign price_per_day = product_option_value.variant.metafields.custom.price_per_day
+                  %}
+                  {% if variant_featured_media != blank %}
+                    {{ variant_featured_media | image_url: width: 112 | image_tag: class: 'variant-option__button-label__image', alt: product_option_value.name, loading: 'lazy' }}
+                    <div class="variant-option__button-label__meta">
+                      <span class="variant-option__button-label__meta-name">
+                        {{- product_option_value | escape -}}
+                      </span>
+                      {% if price_per_day != blank %}
+                        <span class="variant-option__button-label__price-per-day">
+                          {{ price_per_day }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
                   {% if product_option_value.available == true %}
                     <span
                       class="variant-option__button-label__pill"
