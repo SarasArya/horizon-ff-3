@@ -52,6 +52,7 @@
     "carousel_pagination": "Carousel pagination",
     "cart_features": "Cart features",
     "colors": "Colors",
+    "column_settings": "Column settings",
     "collection_page": "Collection page",
     "complementary_products": "Complementary products must be set up using the Search & Discovery app. [Learn more](https://help.shopify.com/manual/online-store/search-and-discovery)",
     "content_layout": "Content layout",
@@ -434,7 +435,10 @@
     "video_section": "Video",
     "view_all_button": "View all",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider"
+    "comparison_slider": "Comparison slider",
+    "comparison_table": "Comparison table",
+    "table_row": "Table row",
+    "table_cell": "Table cell"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -477,6 +481,7 @@
     // Alignment option to center content horizontally or vertically
     "center": "Center",
     "chat_bubble": "Chat bubble",
+    "check": "Check",
     "check_box": "Check box",
     "chevron": "Chevron",
     "chevron_large": "Large chevrons",
@@ -512,6 +517,7 @@
     // Icon for laundry care symbol (machine dry)
     "dryer": "Dryer",
     "editorial": "Editorial",
+    "empty": "Empty",
     // Text alignment option for end of reading direction
     "end": "End",
     "extra_large": "Extra large",
@@ -521,6 +527,7 @@
     "facebook": "Facebook",
     "featured_collections": "Featured collections",
     "featured_products": "Featured products",
+    "feature": "Feature",
     "fill": "Fill",
     "fire": "Fire",
     // Layout option for content sizing behavior
@@ -544,6 +551,7 @@
     "gradient": "Gradient",
     "grid": "Grid",
     "h1": "Heading 1",
+    "header": "Header",
     "h2": "Heading 2",
     "h3": "Heading 3",
     "h4": "Heading 4",
@@ -670,6 +678,8 @@
     "semibold": "Semibold",
     "sentence": "Sentence",
     "serving_dish": "Serving dish",
+    "section_header": "Section header",
+    "semibold": "Semibold",
     "shaded": "Shaded",
     "shirt": "Shirt",
     "shoe": "Shoe",
@@ -746,7 +756,8 @@
     "wide": "Wide",
     "youtube": "YouTube",
     "with_hints": "With hints",
-    "below_media": "Below media"
+    "below_media": "Below media",
+    "x_mark": "X mark"
   },
   "settings": {
     "accordion": "Accordion",
@@ -799,6 +810,7 @@
     "card_image_height": "Product image height",
     "card_size": "Card size",
     "carousel_on_mobile": "Carousel on mobile",
+    "cell_type": "Cell type",
     "cart_count": "Cart count",
     "cart_items": "Cart items",
     "cart_related_products": "Related products",
@@ -817,6 +829,10 @@
     "collection_title_case": "Collection title case",
     "color": "Color",
     "color_scheme": "Color scheme",
+    "column_1_heading": "Column 1 heading",
+    "column_2_heading": "Column 2 heading",
+    "column_1_image": "Column 1 image",
+    "column_2_image": "Column 2 image",
     "colors": "Colors",
     "columns": "Columns",
     // Layout container block name for grouping other blocks
@@ -840,6 +856,7 @@
     // Primary color scheme option, not specialized variants
     "default": "Default",
     "default_logo": "Default logo",
+    "description": "Description",
     "desktop_height": "Desktop height",
     "desktop_pagination": "Desktop pagination",
     "direction": "Direction",
@@ -880,6 +897,7 @@
     "font_family": "Font family",
     "font_price": "Price font",
     "font_weight": "Font weight",
+    "footnote": "Footnote",
     "full_width_first_image": "Full width first image",
     "full_width_on_mobile": "Full width on mobile",
     "gap": "Gap",
@@ -891,6 +909,7 @@
     "heading_preset": "Heading preset",
     "headings": "Headings",
     "height": "Height",
+    "highlight_color": "Highlight color",
     "hide_logo_on_home_page": "Hide logo on home page",
     // Checkbox to hide padding control settings
     "hide_padding": "Hide padding",
@@ -1057,6 +1076,7 @@
     "right": "Right",
     "right_padding": "Right padding",
     "row": "Row",
+    "row_type": "Row type",
     "scroll_speed": "Time to next announcement",
     "search": "Search",
     "search_icon": "Search icon",
@@ -1078,6 +1098,7 @@
     // Checkbox label to toggle visibility of UI elements
     "show": "Show",
     "show_as_accordion": "Show as accordion on mobile",
+    "show_border": "Show border",
     "show_author": "Author",
     "show_alignment": "Show alignment",
     "show_count": "Show count",
@@ -1115,6 +1136,7 @@
     "tertiary_font": "Tertiary font",
     // Generic label for text-related settings (content or color)
     "text": "Text",
+    "text_alignment": "Text alignment",
     // Text capitalization setting for typography (uppercase/lowercase)
     "text_case": "Case",
     "text_hierarchy": "Text hierarchy",

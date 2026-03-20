@@ -1,0 +1,120 @@
+{% doc %}
+  Table Row Block
+
+  Container block for a comparison table row. Renders nested table-cell
+  and image blocks in a horizontal flex layout.
+
+  @example {% content_for 'block', type: 'table-row', id: 'row-1' %}
+{% enddoc %}
+
+{% liquid
+  assign row_type = block.settings.row_type | default: 'feature'
+  assign show_border = block.settings.show_border
+%}
+
+{% capture children %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<div
+  class="comparison-table__row comparison-table__row--{{ row_type }}{% if show_border %} comparison-table__row--bordered{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  {{ children }}
+</div>
+
+{% stylesheet %}
+  .comparison-table__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 8px;
+    gap: 0;
+  }
+
+  .comparison-table__row--bordered {
+    border-top: 1px solid #D0D0BC;
+  }
+
+  .comparison-table__row--header {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+
+  .comparison-table__row--header .comparison-table__cell:first-child {
+    visibility: hidden;
+  }
+
+  .comparison-table__row--section-header {
+    font-weight: 500;
+  }
+
+  .comparison-table__row--section-header .comparison-table__cell {
+    font-weight: 500;
+    font-family: var(--font-heading--family);
+  }
+
+  .comparison-table__row--feature {
+    padding-block: 12px;
+  }
+
+  .comparison-table__row--section-header {
+    padding-block: 8px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .comparison-table__row--feature {
+      padding-block: 10px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.table_row",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "table-cell"
+    },
+    {
+      "type": "image"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "row_type",
+      "label": "t:settings.row_type",
+      "options": [
+        {
+          "value": "header",
+          "label": "t:options.header"
+        },
+        {
+          "value": "feature",
+          "label": "t:options.feature"
+        },
+        {
+          "value": "section-header",
+          "label": "t:options.section_header"
+        }
+      ],
+      "default": "feature"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "t:settings.show_border",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.table_row",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

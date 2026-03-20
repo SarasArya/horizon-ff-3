@@ -1,0 +1,154 @@
+{% doc %}
+  Table Cell Block
+
+  Renders a single cell in a comparison table row.
+  Supports text content, checkmark icons, X mark icons, or empty cells.
+
+  @example {% content_for 'block', type: 'table-cell', id: 'cell-1' %}
+{% enddoc %}
+
+{% liquid
+  assign cell_type = block.settings.cell_type | default: 'text'
+  assign font_weight = block.settings.font_weight | default: 'normal'
+  assign text_alignment = block.settings.text_alignment | default: 'left'
+%}
+
+<div
+  class="comparison-table__cell comparison-table__cell--{{ cell_type }} comparison-table__cell--align-{{ text_alignment }} comparison-table__cell--weight-{{ font_weight }}"
+  {{ block.shopify_attributes }}
+>
+  {% case cell_type %}
+    {% when 'text' %}
+      {% if block.settings.text != blank %}
+        <span class="comparison-table__cell-text">{{ block.settings.text | escape }}</span>
+      {% endif %}
+    {% when 'check' %}
+      <svg class="comparison-table__icon comparison-table__icon--check" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 6L9 17L4 12" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    {% when 'x' %}
+      <svg class="comparison-table__icon comparison-table__icon--x" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M18 6L6 18" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 6L18 18" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    {% when 'empty' %}
+  {% endcase %}
+</div>
+
+{% stylesheet %}
+  .comparison-table__cell {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body--family);
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(var(--color-foreground));
+  }
+
+  .comparison-table__cell--align-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .comparison-table__cell--align-left {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .comparison-table__cell--weight-semibold {
+    font-weight: 600;
+  }
+
+  .comparison-table__cell--weight-normal {
+    font-weight: 400;
+  }
+
+  .comparison-table__icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .comparison-table__cell {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.table_cell",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:settings.text"
+    },
+    {
+      "type": "select",
+      "id": "cell_type",
+      "label": "t:settings.cell_type",
+      "options": [
+        {
+          "value": "text",
+          "label": "t:settings.text"
+        },
+        {
+          "value": "check",
+          "label": "t:options.check"
+        },
+        {
+          "value": "x",
+          "label": "t:options.x_mark"
+        },
+        {
+          "value": "empty",
+          "label": "t:options.empty"
+        }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:settings.font_weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "semibold",
+          "label": "t:options.semibold"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:settings.text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:options.left"
+        },
+        {
+          "value": "center",
+          "label": "t:options.center"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.table_cell",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

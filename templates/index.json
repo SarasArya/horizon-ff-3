@@ -279,10 +279,257 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "comparison_table_Xt7kQ": {
+      "type": "comparison-table",
+      "settings": {
+        "heading": "Better Taste, Better Results",
+        "description": "76% stick with Factor Form longer because of its award-winning taste.",
+        "image": "shopify://shop_images/4-3-c8669e29.jpg",
+        "column_1_heading": "Factor Form",
+        "column_2_heading": "Others",
+        "column_1_image": "shopify://shop_images/image-2-dba42b2d.png",
+        "column_2_image": "shopify://shop_images/image-4-52e92b93.png",
+        "highlight_color": "#C4E0CB",
+        "footnote": "\u2020 In a 3rd-party blind taste test with 115 adults from the general population.",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "blocks": {
+        "table-row_hdr01": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "header",
+            "show_border": false
+          },
+          "blocks": {
+            "cell_hdr01_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "Taste Comparison",
+                "cell_type": "text",
+                "font_weight": "semibold",
+                "text_alignment": "left"
+              }
+            },
+            "cell_hdr01_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "empty"
+              }
+            },
+            "cell_hdr01_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "empty"
+              }
+            }
+          },
+          "block_order": ["cell_hdr01_1", "cell_hdr01_2", "cell_hdr01_3"]
+        },
+        "table-row_feat01": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "feature",
+            "show_border": false
+          },
+          "blocks": {
+            "cell_feat01_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "#1 in taste, texture & aroma",
+                "cell_type": "text",
+                "font_weight": "normal",
+                "text_alignment": "left"
+              }
+            },
+            "cell_feat01_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_feat01_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "x"
+              }
+            }
+          },
+          "block_order": ["cell_feat01_1", "cell_feat01_2", "cell_feat01_3"]
+        },
+        "table-row_shdr01": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "section-header",
+            "show_border": false
+          },
+          "blocks": {
+            "cell_shdr01_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "More reasons",
+                "cell_type": "text",
+                "font_weight": "semibold",
+                "text_alignment": "left"
+              }
+            },
+            "cell_shdr01_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_shdr01_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "x"
+              }
+            }
+          },
+          "block_order": ["cell_shdr01_1", "cell_shdr01_2", "cell_shdr01_3"]
+        },
+        "table-row_feat02": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "feature",
+            "show_border": true
+          },
+          "blocks": {
+            "cell_feat02_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "1 full serving of vegetables",
+                "cell_type": "text",
+                "font_weight": "normal",
+                "text_alignment": "left"
+              }
+            },
+            "cell_feat02_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_feat02_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "x"
+              }
+            }
+          },
+          "block_order": ["cell_feat02_1", "cell_feat02_2", "cell_feat02_3"]
+        },
+        "table-row_feat03": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "feature",
+            "show_border": true
+          },
+          "blocks": {
+            "cell_feat03_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "No megadoses (<100% DV)",
+                "cell_type": "text",
+                "font_weight": "normal",
+                "text_alignment": "left"
+              }
+            },
+            "cell_feat03_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_feat03_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "x"
+              }
+            }
+          },
+          "block_order": ["cell_feat03_1", "cell_feat03_2", "cell_feat03_3"]
+        },
+        "table-row_feat04": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "feature",
+            "show_border": true
+          },
+          "blocks": {
+            "cell_feat04_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "Under $2 per serving",
+                "cell_type": "text",
+                "font_weight": "normal",
+                "text_alignment": "left"
+              }
+            },
+            "cell_feat04_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_feat04_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "x"
+              }
+            }
+          },
+          "block_order": ["cell_feat04_1", "cell_feat04_2", "cell_feat04_3"]
+        },
+        "table-row_feat05": {
+          "type": "table-row",
+          "settings": {
+            "row_type": "feature",
+            "show_border": true
+          },
+          "blocks": {
+            "cell_feat05_1": {
+              "type": "table-cell",
+              "settings": {
+                "text": "Single-serving packets",
+                "cell_type": "text",
+                "font_weight": "normal",
+                "text_alignment": "left"
+              }
+            },
+            "cell_feat05_2": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            },
+            "cell_feat05_3": {
+              "type": "table-cell",
+              "settings": {
+                "cell_type": "check"
+              }
+            }
+          },
+          "block_order": ["cell_feat05_1", "cell_feat05_2", "cell_feat05_3"]
+        }
+      },
+      "block_order": [
+        "table-row_hdr01",
+        "table-row_feat01",
+        "table-row_shdr01",
+        "table-row_feat02",
+        "table-row_feat03",
+        "table-row_feat04",
+        "table-row_feat05"
+      ]
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "comparison_table_Xt7kQ"
   ]
 }
