@@ -39,36 +39,18 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. Buybox Badges
+   2. Buybox Badges & Tags (text blocks with background inside buybox-header)
    -------------------------------------------------------------------------- */
-.product-information .buybox-header__badges {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
-.product-information .buybox-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-family: var(--font-heading--family, sans-serif);
+/* Badge and tag text blocks inside buybox-header groups: enforce font-weight */
+.product-information .buybox-header .text-block.text-block--background {
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  white-space: nowrap;
+  border: none;
 }
 
-.product-information .buybox-badge--new {
-  background-color: #FFFFFF;
-  color: #141414;
-}
-
-.product-information .buybox-badge--discount {
-  background-color: #EC0606;
-  color: #FFFFFF;
+/* Ensure badge/tag text inherits font-weight into inner elements */
+.product-information .buybox-header .text-block.text-block--background p {
+  font-weight: inherit;
 }
 
 /* --------------------------------------------------------------------------
@@ -97,35 +79,14 @@
 }
 
 /* --------------------------------------------------------------------------
-   4. Tags
+   4. Tags — mobile font-size override for tag text blocks
    -------------------------------------------------------------------------- */
-.product-information .buybox-header__tags {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.product-information .buybox-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background-color: #F5FAF6;
-  color: #2A523F;
-  font-family: var(--font-heading--family, sans-serif);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  white-space: nowrap;
-}
-
 @media screen and (max-width: 749px) {
-  .product-information .buybox-tag {
-    font-size: 12px;
-    line-height: 16px;
+  /* Tags inside buybox-header render at 0.875rem via inline style;
+     reduce to 12px/16px on mobile per Figma mobile frame */
+  .product-information .buybox-header .text-block.text-block--background[style*="0.875rem"] {
+    font-size: 12px !important;
+    line-height: 16px !important;
   }
 }
 
@@ -195,11 +156,17 @@
 }
 
 .product-information .variant-option--buttons .variant-option__button-label__image {
-  width: 56px;
-  height: 56px;
-  min-width: 56px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
   object-fit: cover;
   flex-shrink: 0;
+  border: 1px solid #D0D0BC;
+}
+
+/* Selected variant image gets darker border */
+.product-information .variant-option--buttons .variant-option__button-label:has(input:checked) .variant-option__button-label__image {
+  border-color: #000000;
 }
 
 .product-information .variant-option--buttons .variant-option__button-label__meta {

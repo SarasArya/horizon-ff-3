@@ -71,6 +71,11 @@
                 <span class="selling-plan-picker__radio-circle" aria-hidden="true"></span>
                 {{ subscription_label }}
               </div>
+              {% if block.settings.subscription_benefits != blank %}
+                <div class="selling-plan-picker__option-details">
+                  {{ block.settings.subscription_benefits }}
+                </div>
+              {% endif %}
               {% if group.selling_plans.size > 1 %}
                 <div class="selling-plan-picker__delivery-frequency">
                   <div class="selling-plan-picker__delivery-label">
@@ -166,6 +171,12 @@
       "id": "subscription_label",
       "label": "t:settings.subscription_label",
       "default": "Subscribe & Save"
+    },
+    {
+      "type": "richtext",
+      "id": "subscription_benefits",
+      "label": "t:settings.subscription_benefits",
+      "default": "<ul><li>Reschedule or cancel anytime</li><li>Free Shipping</li><li>Free Welcome Kit</li></ul>"
     },
     {
       "type": "text",
