@@ -237,9 +237,25 @@
   display: none;
 }
 
+@media screen and (min-width: 750px) {
+  .product-information .variant-option--buttons:has(.variant-option__button-label__image) {
+    flex-direction: row;
+  }
+
+  .product-information .variant-option--buttons:has(.variant-option__button-label__image) .variant-option__button {
+    flex: 1;
+  }
+}
+
 @media screen and (max-width: 749px) {
   .product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) {
     min-height: 56px;
+  }
+
+  .product-information .variant-option--buttons .variant-option__button-label__image {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
   }
 }
 
@@ -320,8 +336,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 16px;
+  padding: 12px;
   gap: 8px;
+}
+
+@media screen and (max-width: 749px) {
+  .selling-plan-picker__option-content {
+    padding: 12px 8px;
+  }
 }
 
 .selling-plan-picker__option-left {
@@ -465,8 +487,14 @@
 
 /* One-time purchase row (compact) */
 .selling-plan-picker__option--onetime .selling-plan-picker__option-content {
-  padding: 12px 16px;
+  padding: 12px;
   align-items: center;
+}
+
+@media screen and (max-width: 749px) {
+  .selling-plan-picker__option--onetime .selling-plan-picker__option-content {
+    padding: 12px 8px;
+  }
 }
 
 .selling-plan-picker__onetime-price {
@@ -597,4 +625,127 @@
     font-size: 14px;
     line-height: 20px;
   }
+}
+
+/* --------------------------------------------------------------------------
+   12. Product Recommendations Upsell Cards (horizontal layout)
+   -------------------------------------------------------------------------- */
+
+/* Override grid to single-column vertical stack */
+.product-information .product-recommendations .resource-list--grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media screen and (max-width: 749px) {
+  .product-information .product-recommendations .resource-list--grid {
+    gap: 12px;
+  }
+}
+
+/* Each card: horizontal row layout */
+.product-information .product-recommendations .resource-list__item {
+  height: auto;
+}
+
+.product-information .product-recommendations .resource-list__item .product-card {
+  display: flex;
+  height: auto;
+}
+
+.product-information .product-recommendations .resource-list__item .product-card__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px 0 0;
+  border: 1px solid #D0D0BC;
+  background: #FFFFFF;
+  border-radius: 0;
+}
+
+/* Image: 88x88 square */
+.product-information .product-recommendations .resource-list__item .product-card__content .card-gallery {
+  width: 88px;
+  min-width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 0;
+  overflow: hidden;
+  border-inline-end: 1px solid #D0D0BC;
+}
+
+.product-information .product-recommendations .resource-list__item .product-card__content .card-gallery img {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+}
+
+/* Hide gallery controls and badges inside upsell cards */
+.product-information .product-recommendations .resource-list__item .card-gallery slideshow-arrows,
+.product-information .product-recommendations .resource-list__item .card-gallery .card-gallery__badges {
+  display: none;
+}
+
+/* Product info area (title, rating, price): fill remaining space */
+.product-information .product-recommendations .resource-list__item .product-card__content > :not(.card-gallery):not(.product-card__link):not(.product-card__quick-add) {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Product title styling */
+.product-information .product-recommendations .resource-list__item .product-title {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #141414;
+}
+
+@media screen and (max-width: 749px) {
+  .product-information .product-recommendations .resource-list__item .product-title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* Price styling in upsell cards */
+.product-information .product-recommendations .resource-list__item .price {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Hide quick-add overlay, show inline add button instead */
+.product-information .product-recommendations .resource-list__item .product-card__quick-add {
+  display: none;
+}
+
+/* ADD button: pill-shaped on the far right */
+.product-information .product-recommendations .resource-list__item .product-card__content {
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   13. Gallery Badge Overlay
+   -------------------------------------------------------------------------- */
+.product-information .product-media-gallery {
+  position: relative;
+}
+
+.product-information .gallery-badge {
+  position: absolute;
+  top: 12px;
+  inset-inline-start: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: #141414;
+  color: #FFFFFF;
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
 }
