@@ -42,9 +42,17 @@
    2. Buybox Badges & Tags (text blocks with background inside buybox-header)
    -------------------------------------------------------------------------- */
 
-/* Badge and tag text blocks inside buybox-header groups: enforce font-weight */
+/* Badge and tag text blocks inside buybox-header groups: pill/chip styling */
 .product-information .buybox-header .text-block.text-block--background {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* !important overrides inline padding from text block spacing-padding snippet */
+  padding: 2px 8px !important;
+  border-radius: 2px;
   font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
   border: none;
 }
 
@@ -82,9 +90,8 @@
    4. Tags — mobile font-size override for tag text blocks
    -------------------------------------------------------------------------- */
 @media screen and (max-width: 749px) {
-  /* Tags inside buybox-header render at 0.875rem via inline style;
-     reduce to 12px/16px on mobile per Figma mobile frame */
-  .product-information .buybox-header .text-block.text-block--background[style*="0.875rem"] {
+  /* All badges and tags inside buybox-header use 12px/16px on mobile per Figma */
+  .product-information .buybox-header .text-block.text-block--background {
     font-size: 12px !important;
     line-height: 16px !important;
   }
@@ -210,7 +217,7 @@
     flex-direction: row;
   }
 
-  .product-information .variant-option--buttons:has(.variant-option__button-label__image) .variant-option__button {
+  .product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) {
     flex: 1;
   }
 }
@@ -286,18 +293,12 @@
   justify-content: center;
   align-items: center;
   background-color: #E1F0E2;
-  padding: 4px 0;
+  padding: 4px 12px;
   font-family: var(--font-heading--family, sans-serif);
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: #141414;
-}
-
-@media screen and (max-width: 749px) {
-  .product-information .selling-plan-picker__badge-bar {
-    padding: 4px 0;
-  }
 }
 
 .product-information .selling-plan-picker__option-content {
