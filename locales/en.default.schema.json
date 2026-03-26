@@ -436,7 +436,10 @@
     "pills": "Pills",
     "comparison_slider": "Comparison slider",
     "buybox_header": "Buybox header",
-    "selling_plan_picker": "Selling plan picker"
+    "selling_plan_picker": "Selling plan picker",
+    "comparison_table": "Comparison table",
+    "table_row": "Table row",
+    "table_cell": "Table cell"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -1184,7 +1187,18 @@
     "subscription_label": "Subscription label",
     "subscription_benefits": "Subscription Benefits",
     "onetime_label": "One-time label",
-    "default_selected": "Default selection"
+    "default_selected": "Default selection",
+    "column_1_heading": "Column 1 heading",
+    "column_2_heading": "Column 2 heading",
+    "column_1_image": "Column 1 image",
+    "column_2_image": "Column 2 image",
+    "highlight_color": "Highlight color",
+    "footnote": "Footnote",
+    "row_type": "Row type",
+    "show_border": "Show border",
+    "cell_type": "Cell type",
+    "font_weight": "Font weight",
+    "text_alignment": "Text alignment"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

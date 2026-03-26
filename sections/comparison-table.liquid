@@ -1,0 +1,258 @@
+{% doc %}
+  Comparison Table Section
+
+  Renders a side-by-side comparison table with an image and feature grid.
+  Supports nested table-row blocks containing table-cell blocks.
+
+  @example
+  Use in template JSON with type: "comparison-table"
+{% enddoc %}
+
+{{ 'comparison-table.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign heading = section.settings.heading
+  assign description = section.settings.description
+  assign section_image = section.settings.image
+  assign col1_heading = section.settings.column_1_heading
+  assign col2_heading = section.settings.column_2_heading
+  assign col1_image = section.settings.column_1_image
+  assign col2_image = section.settings.column_2_image
+  assign highlight_color = section.settings.highlight_color
+  assign footnote = section.settings.footnote
+%}
+
+<div
+  class="comparison-table-section"
+  style="--comparison-highlight-color: {{ highlight_color }}; --section-padding-top: {{ section.settings.padding-block-start }}px; --section-padding-bottom: {{ section.settings.padding-block-end }}px;"
+>
+  {% if heading != blank or description != blank %}
+    <div class="comparison-table-section__header">
+      {% if heading != blank %}
+        <h2 class="comparison-table-section__heading">{{ heading | escape }}</h2>
+      {% endif %}
+      {% if description != blank %}
+        <p class="comparison-table-section__description">{{ description | escape }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="comparison-table-section__content">
+    {% if section_image != blank %}
+      <div class="comparison-table-section__image">
+        {{ section_image | image_url: width: 1444 | image_tag: loading: 'lazy', alt: heading, class: 'comparison-table-section__img' }}
+      </div>
+    {% endif %}
+
+    <div class="comparison-table-section__table-wrapper">
+      {% if col1_image != blank or col2_image != blank %}
+        <div class="comparison-table-section__column-headers">
+          <div class="comparison-table-section__column-label comparison-table-section__column-label--empty"></div>
+          <div class="comparison-table-section__column-label comparison-table-section__column-label--highlight">
+            {% if col1_image != blank %}
+              {{ col1_image | image_url: width: 128 | image_tag: loading: 'lazy', alt: col1_heading, class: 'comparison-table-section__column-logo' }}
+            {% endif %}
+            {% if col1_heading != blank %}
+              <span class="comparison-table-section__column-name">{{ col1_heading | escape }}</span>
+            {% endif %}
+          </div>
+          <div class="comparison-table-section__column-label">
+            {% if col2_image != blank %}
+              {{ col2_image | image_url: width: 128 | image_tag: loading: 'lazy', alt: col2_heading, class: 'comparison-table-section__column-logo' }}
+            {% endif %}
+            {% if col2_heading != blank %}
+              <span class="comparison-table-section__column-name">{{ col2_heading | escape }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="comparison-table-section__rows" role="table" aria-label="{{ heading | escape }}">
+        {% content_for 'blocks' %}
+      </div>
+
+      {% if footnote != blank %}
+        <p class="comparison-table-section__footnote">{{ footnote | escape }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:names.comparison_table",
+  "tag": "section",
+  "class": "comparison-table",
+  "blocks": [
+    {
+      "type": "table-row",
+      "name": "t:names.table_row",
+      "blocks": [
+        {
+          "type": "table-cell",
+          "name": "t:names.table_cell",
+          "settings": [
+            {
+              "type": "text",
+              "id": "text",
+              "label": "t:settings.text"
+            },
+            {
+              "type": "select",
+              "id": "cell_type",
+              "label": "t:settings.cell_type",
+              "options": [
+                { "value": "text", "label": "Text" },
+                { "value": "check", "label": "Check" },
+                { "value": "x", "label": "X" },
+                { "value": "empty", "label": "Empty" }
+              ],
+              "default": "text"
+            },
+            {
+              "type": "select",
+              "id": "font_weight",
+              "label": "t:settings.font_weight",
+              "options": [
+                { "value": "normal", "label": "Normal" },
+                { "value": "semibold", "label": "Semibold" }
+              ],
+              "default": "normal"
+            },
+            {
+              "type": "select",
+              "id": "text_alignment",
+              "label": "t:settings.text_alignment",
+              "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "center", "label": "Center" },
+                { "value": "right", "label": "Right" }
+              ],
+              "default": "left"
+            }
+          ]
+        }
+      ],
+      "settings": [
+        {
+          "type": "select",
+          "id": "row_type",
+          "label": "t:settings.row_type",
+          "options": [
+            { "value": "header", "label": "Header" },
+            { "value": "feature", "label": "Feature" },
+            { "value": "section-header", "label": "Section header" }
+          ],
+          "default": "feature"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border",
+          "label": "t:settings.show_border",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:settings.heading",
+      "default": "Better Taste, Better Results"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:settings.description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "text",
+      "id": "column_1_heading",
+      "label": "t:settings.column_1_heading",
+      "default": "Factor Form"
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "t:settings.column_2_heading",
+      "default": "Others"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_1_image",
+      "label": "t:settings.column_1_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_2_image",
+      "label": "t:settings.column_2_image"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "t:settings.highlight_color",
+      "default": "#C4E0CB"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "t:settings.footnote"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.comparison_table",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

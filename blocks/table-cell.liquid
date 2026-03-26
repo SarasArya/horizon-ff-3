@@ -1,0 +1,94 @@
+{% doc %}
+  Table Cell Block
+
+  Renders a single cell in a comparison table row.
+  Supports text, check, x, and empty cell types.
+
+  @example
+  {% content_for 'block', type: 'table-cell', id: 'cell-1' %}
+{% enddoc %}
+
+{% liquid
+  assign cell_type = block.settings.cell_type
+  assign text_val = block.settings.text
+  assign font_weight_val = block.settings.font_weight
+  assign text_alignment_val = block.settings.text_alignment
+
+  assign cell_classes = 'comparison-table-section__cell'
+  if font_weight_val == 'semibold'
+    assign cell_classes = cell_classes | append: ' comparison-table-section__cell--semibold'
+  endif
+  if text_alignment_val == 'center'
+    assign cell_classes = cell_classes | append: ' comparison-table-section__cell--center'
+  elsif text_alignment_val == 'right'
+    assign cell_classes = cell_classes | append: ' comparison-table-section__cell--right'
+  endif
+%}
+
+<div class="{{ cell_classes }}" role="cell" {{ block.shopify_attributes }}>
+  {% case cell_type %}
+    {% when 'text' %}
+      {{ text_val | escape }}
+    {% when 'check' %}
+      <span class="comparison-table-section__cell-icon" aria-label="Yes">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#2A523F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    {% when 'x' %}
+      <span class="comparison-table-section__cell-icon" aria-label="No">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18M6 6L18 18" stroke="#B5B5A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    {% when 'empty' %}
+      {%- comment -%} Empty cell {%- endcomment -%}
+  {% endcase %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.table_cell",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:settings.text"
+    },
+    {
+      "type": "select",
+      "id": "cell_type",
+      "label": "t:settings.cell_type",
+      "options": [
+        { "value": "text", "label": "Text" },
+        { "value": "check", "label": "Check" },
+        { "value": "x", "label": "X" },
+        { "value": "empty", "label": "Empty" }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:settings.font_weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "semibold", "label": "Semibold" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:settings.text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ]
+}
+{% endschema %}

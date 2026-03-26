@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Comparison Table Section Styles
+   ========================================================================== */
+
+.comparison-table-section {
+  padding-block-start: var(--section-padding-top, 48px);
+  padding-block-end: var(--section-padding-bottom, 48px);
+  padding-inline: 64px;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section {
+    padding-inline: 16px;
+  }
+}
+
+.comparison-table-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  margin-block-end: 48px;
+}
+
+.comparison-table-section__heading {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0;
+  margin: 0;
+  color: #141414;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+.comparison-table-section__description {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0;
+  color: #141414;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.comparison-table-section__content {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__content {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.comparison-table-section__image {
+  flex: 1;
+  min-width: 0;
+}
+
+.comparison-table-section__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.comparison-table-section__table-wrapper {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.comparison-table-section__column-headers {
+  display: grid;
+  grid-template-columns: 1fr 140px 100px;
+  gap: 0;
+  margin-block-end: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__column-headers {
+    grid-template-columns: 1fr 100px 80px;
+  }
+}
+
+.comparison-table-section__column-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 8px;
+}
+
+.comparison-table-section__column-label--empty {
+  visibility: hidden;
+}
+
+.comparison-table-section__column-label--highlight {
+  background-color: var(--comparison-highlight-color, #C4E0CB);
+  border-radius: 4px 4px 0 0;
+}
+
+.comparison-table-section__column-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__column-logo {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.comparison-table-section__column-name {
+  font-family: var(--font-heading--family, sans-serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+  text-align: center;
+}
+
+.comparison-table-section__rows {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Table row block */
+.comparison-table-section__row {
+  display: grid;
+  grid-template-columns: 1fr 140px 100px;
+  gap: 0;
+  align-items: center;
+  padding: 4px 0;
+}
+
+@media screen and (max-width: 749px) {
+  .comparison-table-section__row {
+    grid-template-columns: 1fr 100px 80px;
+  }
+}
+
+.comparison-table-section__row--border {
+  border-block-start: 1px solid #D0D0BC;
+}
+
+.comparison-table-section__row--header {
+  padding-block: 8px;
+}
+
+.comparison-table-section__row--section-header {
+  padding-block-start: 16px;
+  padding-block-end: 8px;
+}
+
+/* Table cell block */
+.comparison-table-section__cell {
+  padding: 4px 16px;
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #141414;
+}
+
+.comparison-table-section__cell--semibold {
+  font-weight: 600;
+}
+
+.comparison-table-section__cell--center {
+  text-align: center;
+}
+
+.comparison-table-section__cell--right {
+  text-align: end;
+}
+
+.comparison-table-section__cell--highlight {
+  background-color: var(--comparison-highlight-color, #C4E0CB);
+}
+
+.comparison-table-section__cell-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-table-section__cell-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.comparison-table-section__footnote {
+  font-family: var(--font-body--family, sans-serif);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #80806F;
+  margin-block-start: 16px;
+}

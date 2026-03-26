@@ -1,0 +1,60 @@
+{% doc %}
+  Table Row Block
+
+  Renders a row in the comparison table section.
+  Contains nested table-cell blocks.
+
+  @example
+  {% content_for 'block', type: 'table-row', id: 'row-1' %}
+{% enddoc %}
+
+{% liquid
+  assign row_type = block.settings.row_type
+  assign show_border = block.settings.show_border
+
+  assign row_classes = 'comparison-table-section__row'
+  if show_border
+    assign row_classes = row_classes | append: ' comparison-table-section__row--border'
+  endif
+  if row_type == 'header'
+    assign row_classes = row_classes | append: ' comparison-table-section__row--header'
+  elsif row_type == 'section-header'
+    assign row_classes = row_classes | append: ' comparison-table-section__row--section-header'
+  endif
+%}
+
+<div class="{{ row_classes }}" role="row" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.table_row",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "table-cell",
+      "name": "t:names.table_cell"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "row_type",
+      "label": "t:settings.row_type",
+      "options": [
+        { "value": "header", "label": "Header" },
+        { "value": "feature", "label": "Feature" },
+        { "value": "section-header", "label": "Section header" }
+      ],
+      "default": "feature"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "t:settings.show_border",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
