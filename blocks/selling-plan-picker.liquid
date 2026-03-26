@@ -41,6 +41,8 @@
   <selling-plan-picker
     class="selling-plan-picker spacing-style"
     style="{% render 'spacing-style', settings: block.settings %}"
+    data-variant-id="{{ current_variant.id }}"
+    data-product-id="{{ product_resource.id }}"
     {{ block.shopify_attributes }}
   >
     <div class="selling-plan-picker__heading">
@@ -97,11 +99,11 @@
             </div>
             <div class="selling-plan-picker__option-price">
               {% if current_variant.compare_at_price > current_variant.price %}
-                <span class="selling-plan-picker__compare-price">
+                <span class="selling-plan-picker__compare-price" data-variant-compare-price="{{ current_variant.compare_at_price }}">
                   {{ current_variant.compare_at_price | money }}
                 </span>
               {% endif %}
-              <span class="selling-plan-picker__sale-price">
+              <span class="selling-plan-picker__sale-price" data-variant-price="{{ current_variant.price }}">
                 {{ current_variant.price | money }}
               </span>
               {% if plan_price > 0 %}
@@ -131,7 +133,7 @@
             </div>
           </div>
           <div class="selling-plan-picker__option-price">
-            <span class="selling-plan-picker__onetime-price">
+            <span class="selling-plan-picker__onetime-price" data-variant-price="{{ current_variant.price }}">
               {{ current_variant.price | money }}
             </span>
           </div>

@@ -5,6 +5,16 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   0. Sticky Desktop Details Column
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 750px) {
+  .product-information .product-details.sticky-content--desktop {
+    top: calc(var(--sticky-header-offset, 0px) + 24px);
+    align-self: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
    1. Buybox Header (colored header area)
    -------------------------------------------------------------------------- */
 .product-information .buybox-header {
@@ -224,13 +234,13 @@
 
 @media screen and (max-width: 749px) {
   .product-information .variant-option--buttons .variant-option__button-label:has(.variant-option__button-label__image) {
-    min-height: 56px;
+    min-height: 48px;
   }
 
   .product-information .variant-option--buttons .variant-option__button-label__image {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
   }
 }
 
@@ -498,10 +508,7 @@
 @media screen and (max-width: 749px) {
   .product-information .add-to-cart-button.button {
     height: 40px;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-    letter-spacing: 0;
+    padding-inline: 24px;
   }
 }
 
@@ -554,16 +561,6 @@
 
   .product-information .buybox-usp-item {
     gap: 6px;
-  }
-
-  .product-information .buybox-usp-item__icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .product-information .buybox-usp-item__text {
-    font-size: 10px;
-    line-height: 12px;
   }
 }
 
@@ -825,4 +822,70 @@
   font-size: 12px;
   line-height: 16px;
   white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   14. Accordion Rows — border-bottom styling
+   -------------------------------------------------------------------------- */
+.product-information .accordion details {
+  border-block-end: 1px solid #D0D0BC;
+  padding-block: 20px 0;
+}
+
+.product-information .accordion details summary {
+  padding-block-end: 20px;
+}
+
+.product-information .accordion details .details__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   15. Desktop Gallery Grid — 2-column wrap, 8px gap
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 750px) {
+  .product-information .product-media-gallery[data-media-presentation="grid"] .product-media-gallery__slides {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .product-information .product-media-gallery[data-media-presentation="grid"] .product-media-gallery__slides > * {
+    flex: 0 0 calc(50% - 4px);
+    max-width: calc(50% - 4px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Mobile Gallery — full-width main image + thumbnail strip
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .product-information .product-media-gallery__thumbnails {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    padding-inline-start: 16px;
+    scrollbar-width: none;
+  }
+
+  .product-information .product-media-gallery__thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-information .product-media-gallery__thumbnail {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+
+  .product-information .product-media-gallery__thumbnail img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+  }
 }

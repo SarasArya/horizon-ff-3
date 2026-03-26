@@ -11,11 +11,28 @@ class SellingPlanPicker extends Component {
   /** @type {string|null} */
   #currentSellingPlanId = null;
 
+  /** @type {AbortController|null} */
+  #abortController = null;
+
   connectedCallback() {
     super.connectedCallback();
+    this.#abortController = new AbortController();
     this.#initSellingPlan();
     this.addEventListener('change', this.#handleChange.bind(this));
     this.addEventListener('click', this.#handleDeliveryClick.bind(this));
+
+    const section = this.closest('.shopify-section');
+    if (section) {
+      section.addEventListener('variant:update', this.#handleVariantUpdate, {
+        signal: this.#abortController.signal
+      });
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.#abortController?.abort();
+    this.#abortController = null;
   }
 
   /**
@@ -141,6 +158,44 @@ class SellingPlanPicker extends Component {
 
     return null;
   }
+
+  /**
+   * Handle variant:update events to refresh price display
+   * @param {CustomEvent} event
+   */
+  #handleVariantUpdate = (event) => {
+    const newHtml = event.detail?.data?.html;
+    if (!newHtml) return;
+
+    const newPicker = newHtml.querySelector('selling-plan-picker');
+    if (!newPicker) return;
+
+    /* Preserve the user's current selling plan selection */
+    const currentSelectedPlanId = this.#currentSellingPlanId;
+
+    /* Update all price containers with server-rendered values */
+    const currentPriceEls = this.querySelectorAll('.selling-plan-picker__option-price');
+    const newPriceEls = newPicker.querySelectorAll('.selling-plan-picker__option-price');
+
+    for (let i = 0; i < currentPriceEls.length && i < newPriceEls.length; i++) {
+      currentPriceEls[i].innerHTML = newPriceEls[i].innerHTML;
+    }
+
+    /* Also update the one-time price if present */
+    const currentOnetimePrice = this.querySelector('.selling-plan-picker__onetime-price');
+    const newOnetimePrice = newPicker.querySelector('.selling-plan-picker__onetime-price');
+    if (currentOnetimePrice && newOnetimePrice) {
+      currentOnetimePrice.textContent = newOnetimePrice.textContent;
+    }
+
+    /* Restore the selected selling plan in the hidden form input */
+    if (currentSelectedPlanId) {
+      const hiddenInput = this.#getSellingPlanInput();
+      if (hiddenInput) {
+        hiddenInput.value = currentSelectedPlanId;
+      }
+    }
+  };
 
   /**
    * Get the currently selected selling plan ID
